@@ -10,5 +10,6 @@ class LoginActivity : BaseAppCompactActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         showProgressDialog()
+
     }
 }
