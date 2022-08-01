@@ -60,6 +60,7 @@ class LoginActivity : BaseAppCompactActivity() {
                 is NetworkStatus.NoInternet -> {
                     hideProgressDialog()
                 }
+
                 else -> hideProgressDialog()
             }
         }
