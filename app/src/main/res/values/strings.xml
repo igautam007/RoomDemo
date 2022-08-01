@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Room Demo</string>
+
+    <string name="text_username">Username</string>
+    <string name="text_password">Password</string>
+    <string name="text_login">Login</string>
+
+    <!--error messages-->
+    <string name="err_msg_enter_user_name">Please enter username.</string>
+    <string name="err_msg_enter_password">Please enter password.</string>
+
 </resources>

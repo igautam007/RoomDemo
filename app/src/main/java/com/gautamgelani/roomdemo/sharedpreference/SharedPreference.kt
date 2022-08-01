@@ -2,7 +2,7 @@ package com.gautamgelani.roomdemo.sharedpreference
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.gautamgelani.hiltmvvmdemo.data.model.user.UserLoginDetail
+import com.gautamgelani.roomdemo.data.model.user.UserLoginDetail
 import com.gautamgelani.roomdemo.constant.AppConstant
 import com.gautamgelani.roomdemo.utils.MyApplication
 import com.google.gson.Gson

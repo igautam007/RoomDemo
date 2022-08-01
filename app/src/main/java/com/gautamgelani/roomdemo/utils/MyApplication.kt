@@ -5,8 +5,9 @@ import android.os.StrictMode
 import androidx.lifecycle.MutableLiveData
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
-import com.gautamgelani.hiltmvvmdemo.data.model.user.UserLoginDetail
+import com.gautamgelani.roomdemo.data.model.user.UserLoginDetail
 import com.gautamgelani.roomdemo.sharedpreference.SharedPreference
+import com.google.firebase.FirebaseApp
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import dagger.hilt.android.HiltAndroidApp

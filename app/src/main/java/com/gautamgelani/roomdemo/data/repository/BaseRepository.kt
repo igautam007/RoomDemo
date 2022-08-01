@@ -100,7 +100,7 @@ open class BaseRepository(@ApplicationContext val applicationContext: Context) {
         crossinline apiCall: suspend () -> Response<T>,
         apiName: String = ""
     ): T? {
-        //  getNetworkStates().postValue(NetworkStatus.Running(apiName = apiName))
+          getNetworkStates().postValue(NetworkStatus.Running(apiName = apiName))
         // if (NetworkUtils.isOnline(applicationContext)) {
         return try {
             //Invoke the function
