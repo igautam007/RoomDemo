@@ -44,4 +44,10 @@ object DataTypeUtil {
             inputManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
+
+    // get response status 0 true or 1 false
+    infix fun isResponseSuccess(value: String): Boolean {
+        return value == "0"
+    }
+
 }

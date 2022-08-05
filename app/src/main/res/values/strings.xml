@@ -8,5 +8,6 @@
     <!--error messages-->
     <string name="err_msg_enter_user_name">Please enter username.</string>
     <string name="err_msg_enter_password">Please enter password.</string>
+    <string name="err_msg_login">There is some problem occurring in login. Please contact to your company administrator. </string>
 
 </resources>

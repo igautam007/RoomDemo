@@ -1,13 +1,14 @@
 package com.gautamgelani.roomdemo.ui
 
 import android.content.Context
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.gautamgelani.roomdemo.constant.AppConstant
+import com.gautamgelani.roomdemo.data.model.user.UserLoginDetail
 import com.gautamgelani.roomdemo.data.repository.AuthRepository
 import com.gautamgelani.roomdemo.network.NetworkViewModel
 import com.gautamgelani.roomdemo.sharedpreference.SharedPreference
 import com.gautamgelani.roomdemo.utils.HttpRequestHandler
-import com.orhanobut.logger.Logger
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
@@ -19,6 +20,8 @@ class LoginViewModel @Inject constructor(
     override val repository: AuthRepository
 ) : NetworkViewModel(context) {
 
+    val userLoginDetail = MutableLiveData<UserLoginDetail?>()
+
     fun doRequestForLogin(username: String, password: String) {
         val params = HttpRequestHandler.getLoginUserJson(
             username,
@@ -28,7 +31,11 @@ class LoginViewModel @Inject constructor(
 
         viewModelScope.launch {
             val result = repository.doRequestForLogin(params)
-            Logger.e(result.toString())
+            userLoginDetail.value = result
         }
+    }
+
+    suspend fun storeDataInDB(userLoginDetail: UserLoginDetail) {
+        repository.storeDataInDB(userLoginDetail)
     }
 }
