@@ -9,6 +9,8 @@ import com.gautamgelani.roomdemo.constant.AppConstant
 import com.gautamgelani.roomdemo.data.model.user.UserLoginDetail
 import com.gautamgelani.roomdemo.databinding.ActivityLoginBinding
 import com.gautamgelani.roomdemo.network.NetworkStatus
+import com.gautamgelani.roomdemo.sharedpreference.SharedPreference
+import com.gautamgelani.roomdemo.sharedpreference.SharedPreference.getUserDetails
 import com.gautamgelani.roomdemo.sharedpreference.SharedPreference.setStringInPref
 import com.gautamgelani.roomdemo.utils.BaseAppCompactActivity
 import com.gautamgelani.roomdemo.utils.DataTypeUtil.isResponseSuccess
@@ -84,7 +86,10 @@ class LoginActivity : BaseAppCompactActivity() {
     private fun storeDataInDB(userLoginDetail: UserLoginDetail) {
         lifecycleScope.launch{
             viewModel.storeDataInDB(userLoginDetail)
+            SharedPreference.setUserDetails(userLoginDetail)
             hideProgressDialog()
+            val userLoginDetail = getUserDetails()
+
         }
     }
 

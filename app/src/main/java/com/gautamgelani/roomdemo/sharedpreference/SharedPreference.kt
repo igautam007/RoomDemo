@@ -1,12 +1,14 @@
 package com.gautamgelani.roomdemo.sharedpreference
 
-import android.content.Context
 import android.content.SharedPreferences
-import com.gautamgelani.roomdemo.data.model.user.UserLoginDetail
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 import com.gautamgelani.roomdemo.constant.AppConstant
+import com.gautamgelani.roomdemo.data.model.user.UserLoginDetail
 import com.gautamgelani.roomdemo.utils.MyApplication
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.orhanobut.logger.Logger
 
 object SharedPreference {
 
@@ -14,8 +16,16 @@ object SharedPreference {
     private val editor: SharedPreferences.Editor
     private const val MM_secrets = "secrets"
 
+    private val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+
     init {
-        sp = MyApplication.context.getSharedPreferences(MM_secrets, Context.MODE_PRIVATE)
+        sp = EncryptedSharedPreferences.create(
+            MM_secrets,
+            masterKeyAlias,
+            MyApplication.context,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
         editor = sp.edit()
     }
 
@@ -95,6 +105,7 @@ object SharedPreference {
     // storing user detail
     fun getUserDetails(): UserLoginDetail? {
         val params = sp.getString(AppConstant.HM_UserLoginDetail, null) ?: return null
+        Logger.e(params)
         val mapType = object : TypeToken<UserLoginDetail?>() {}.type
         val gson = Gson()
         return gson.fromJson(params, mapType)
